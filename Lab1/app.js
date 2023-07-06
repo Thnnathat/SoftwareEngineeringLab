@@ -31,17 +31,17 @@ app.get('/api/users', (req, res) => {
 })
 
 app.get('/api/user/:id', (req, res) => {
-    let user = users.find(user=>user.id === parseInt(req.params.id))
+    let user = users.find(user => user.id === parseInt(req.params.id))
     if (!user)
-     return res.status(400).json({status:400,message: "Not found user with the given ID"})
+        return res.status(400).json({ status: 400, message: "Not found user with the given ID" })
     res.user = user;
-    const result = { "status": 200, "data": res.user}
+    const result = { "status": 200, "data": res.user }
     return res.json(result)
 })
 
 app.post('/api/users', (req, res) => {
     let user = {
-        "id": users.length+1,
+        "id": users.length + 1,
         "name": req.body.name,
         "email": req.body.email
     }
@@ -54,13 +54,13 @@ app.post('/api/users', (req, res) => {
 })
 
 app.put('/api/user/:id', (req, res) => {
-    let user = users.find( (user) => user.id === parseInt(req.params.id));
+    let user = users.find((user) => user.id === parseInt(req.params.id));
     if (!user) {
         return res
-        .status(400)
-        .json({ status: 400, message: "Not found user with the given ID"});
+            .status(400)
+            .json({ status: 400, message: "Not found user with the given ID" });
     }
-    let user_index = users.findIndex( (user) => user.id == parseInt(req.params.id));
+    let user_index = users.findIndex((user) => user.id == parseInt(req.params.id));
 
     user = {
         "id": user.id,
@@ -79,15 +79,15 @@ app.put('/api/user/:id', (req, res) => {
 })
 
 app.delete('/api/user/:id', (req, res) => {
-        let user = users.find( (user) => user.id === parseInt(req.params.id));
+    let user = users.find((user) => user.id === parseInt(req.params.id));
     if (!user) {
         return res
-        .status(400)
-        .json({ status: 400, message: "Not found user with the given ID"});
+            .status(400)
+            .json({ status: 400, message: "Not found user with the given ID" });
     }
-    let user_index = users.findIndex( user => user.id === parseInt(req.params.id));
+    let user_index = users.findIndex(user => user.id === parseInt(req.params.id));
 
-    users.pop(user_index);
+    users.splice(user_index, 1);
 
     const result = {
         "status": 200,
@@ -99,5 +99,5 @@ app.delete('/api/user/:id', (req, res) => {
 
 
 app.listen(port, () => {
-    console.log('Example app listeming on port '+port);
+    console.log('Example app listeming on port ' + port);
 })
