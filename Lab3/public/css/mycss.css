@@ -1,0 +1,11 @@
+body {
+    background-color: #12141a;
+    overflow: auto;
+}
+
+.footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding: 1rem;
+}
